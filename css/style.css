@@ -1,0 +1,1409 @@
+/*
+ * style.css
+ *
+ * Mr. Food Fast Food Online - Main Stylesheet
+ * Developed by I.am.Mohid 😎
+ *
+ * This stylesheet consolidates all CSS for a clean, maintainable structure.
+ *
+ * Table of Contents:
+ *
+ * 1. Global Variables (Themes)
+ * 2. Base Styles & Typography
+ * 3. Layout (Header, Main, Footer, Sections, Hero Slider)
+ * 4. Components (Buttons, Forms, Cards, Modals, Sidebar)
+ * 5. Utility & Helper Classes
+ * 6. Responsive Design
+ *
+ */
+
+
+/* ==========================================================================
+   1. Global Variables (Themes)
+   ========================================================================== */
+
+/* Theme Name: Dark Red/Orange/Burning Yellow (Default) */
+body.dark-red-orange-theme {
+    --primary-bg: #0A0A0A; /* Deep Black */
+    --secondary-bg: #1A1A1A; /* Slightly lighter black for cards/sections */
+    --text-color: #F8F8F8; /* Off-white for general text */
+    --accent-primary: #E74C3C; /* Fiery Red (main interactive color) */
+    --accent-secondary: #F39C12; /* Burning Yellow (secondary interactive, highlights) */
+    --accent-tertiary: #E67E22; /* Vibrant Orange (subtle accents, links) */
+
+    --btn-primary-bg: var(--accent-primary);
+    --btn-primary-text: var(--primary-bg);
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--accent-secondary); /* Button border/text color */
+    --border-color: #333;
+    --hover-glow-primary: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary);
+    --hover-glow-secondary: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+    --box-shadow-dark: rgb(0 0 0 / 60%);
+    --modal-overlay-bg: rgb(0 0 0 / 75%);
+    --sidebar-shadow: -10px 0 30px rgb(0 0 0 / 70%);
+    --neon-logo-glow: drop-shadow(0 0 8px var(--accent-primary)) drop-shadow(0 0 8px var(--accent-secondary));
+    --title-glow: 0 0 8px rgb(231 76 60 / 50%), 0 0 15px rgb(243 156 18 / 50%);
+    --link-text-color: var(--accent-tertiary); /* Use tertiary for base links */
+    --link-hover-color: var(--accent-primary); /* Links hover to primary */
+    --link-hover-glow: 0 0 8px var(--accent-secondary); /* Links glow secondary */
+    --hero-gradient-end: #670a10; /* Specific end color for hero section gradient */
+}
+
+/* Theme Name: Light Yellow/Red/White */
+body.light-yellow-red-theme {
+    --primary-bg: #FDFCEF; /* Light Yellow-ish White */
+    --secondary-bg: #FFFFFF; /* Pure White */
+    --text-color: #333333;
+    --accent-primary: #C0392B; /* Darker Red */
+    --accent-secondary: #F1C40F; /* Golden Yellow */
+    --accent-tertiary: #D35400; /* Darker Orange */
+
+    --btn-primary-bg: var(--accent-primary);
+    --btn-primary-text: var(--primary-bg);
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--accent-primary);
+    --border-color: #EEE;
+    --hover-glow-primary: 0 0 8px rgb(192 57 43 / 40%), 0 0 15px rgb(192 57 43 / 20%);
+    --hover-glow-secondary: 0 0 8px rgb(241 196 15 / 40%), 0 0 15px rgb(241 196 15 / 20%);
+    --box-shadow-dark: rgb(0 0 0 / 15%);
+    --modal-overlay-bg: rgb(0 0 0 / 50%);
+    --sidebar-shadow: -10px 0 30px rgb(0 0 0 / 15%);
+    --neon-logo-glow: drop-shadow(0 0 5px var(--accent-primary)) drop-shadow(0 0 5px var(--accent-secondary));
+    --title-glow: 0 0 5px rgb(192 57 43 / 30%), 0 0 10px rgb(241 196 15 / 30%);
+    --link-text-color: var(--accent-tertiary);
+    --link-hover-color: var(--accent-primary);
+    --link-hover-glow: 0 0 5px var(--accent-secondary);
+    --hero-gradient-end: #f8e5b6; /* Lighter end for light theme hero */
+}
+
+/* Theme Name: Mid Contrast Bluish/Greenish/Yellow Neon */
+body.mid-bluish-greenish-yellow-neon-theme {
+    --primary-bg: #1F2833; /* Dark Blue-Gray */
+    --secondary-bg: #2C3E50; /* Slightly lighter Blue-Gray */
+    --text-color: #E0E0E0;
+    --accent-primary: #66FCF1; /* Neon Cyan/Blue */
+    --accent-secondary: #F3FF00; /* Bright Neon Yellow */
+    --accent-tertiary: #4CAF50; /* Vibrant Green */
+
+    --btn-primary-bg: var(--accent-primary);
+    --btn-primary-text: var(--primary-bg);
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--accent-secondary);
+    --border-color: #34495E;
+    --hover-glow-primary: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary);
+    --hover-glow-secondary: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+    --box-shadow-dark: rgb(0 0 0 / 40%);
+    --modal-overlay-bg: rgb(0 0 0 / 60%);
+    --sidebar-shadow: -10px 0 30px rgb(0 0 0 / 50%);
+    --neon-logo-glow: drop-shadow(0 0 8px var(--accent-primary)) drop-shadow(0 0 8px var(--accent-secondary));
+    --title-glow: 0 0 8px rgb(102 252 241 / 50%), 0 0 15px rgb(243 255 0 / 50%);
+    --link-text-color: var(--accent-tertiary);
+    --link-hover-color: var(--accent-primary);
+    --link-hover-glow: 0 0 8px var(--accent-secondary);
+    --hero-gradient-end: #1a324b; /* Darker blue for hero */
+}
+
+/* Theme Name: Dark Neon */
+body.dark-neon-theme {
+    --primary-bg: #1A1A1A; /* Deep Charcoal */
+    --secondary-bg: #282828; /* Slightly lighter charcoal for cards/sections */
+    --text-color: #F8F8F8; /* Off-white for general text */
+    --accent-primary: #FF00FF; /* Neon Pink/Magenta */
+    --accent-secondary: #00FFFF; /* Neon Cyan/Blue */
+    --accent-tertiary: #FFC0CB; /* Lighter Pink for tertiary (e.g., links) */
+    
+    --btn-primary-bg: var(--accent-primary);
+    --btn-primary-text: var(--primary-bg);
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: var(--accent-secondary);
+    --border-color: #444;
+    --hover-glow-primary: 0 0 10px var(--accent-primary), 0 0 20px var(--accent-primary);
+    --hover-glow-secondary: 0 0 10px var(--accent-secondary), 0 0 20px var(--accent-secondary);
+    --box-shadow-dark: rgb(0 0 0 / 50%);
+    --modal-overlay-bg: rgb(0 0 0 / 70%);
+    --sidebar-shadow: -10px 0 30px rgb(0 0 0 / 60%);
+    --neon-logo-glow: drop-shadow(0 0 8px var(--accent-primary)) drop-shadow(0 0 8px var(--accent-secondary));
+    --title-glow: 0 0 10px var(--accent-primary), 0 0 15px var(--accent-secondary), 0 0 20px rgb(0 255 255 / 50%);
+    --link-text-color: var(--accent-tertiary);
+    --link-hover-color: var(--accent-primary);
+    --link-hover-glow: 0 0 8px var(--accent-primary);
+    --hero-gradient-end: #0c1a1a; /* Darker cyan-ish for hero */
+}
+
+
+/* ==========================================================================
+   2. Base Styles & Typography
+   ========================================================================== */
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--primary-bg);
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smooth theme transition */
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+body.modal-open { /* Class added by JS to prevent body scroll when modal/sidebar is open */
+    overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--accent-primary); /* Headings use primary accent */
+    margin-bottom: 0.5em;
+    text-shadow: var(--title-glow); /* Dynamic title glow */
+}
+/* Specific override for section titles to use accent-secondary */
+.section-title {
+    color: var(--accent-secondary); /* Section titles use the secondary accent */
+    text-shadow: var(--title-glow); /* Dynamic title glow */
+}
+
+a {
+    color: var(--link-text-color); /* Links use tertiary accent */
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color); /* Hover color for links */
+    text-shadow: var(--link-hover-glow); /* Dynamic link hover glow */
+}
+
+ul {
+    list-style: none;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px; /* Slightly more padding for better spacing */
+}
+
+.section {
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* For animations, keeps content within bounds */
+}
+
+.section-title {
+    font-size: 2.8em;
+    margin-bottom: 1.5em;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    font-weight: 800; /* Bolder titles */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); /* Gradient matches theme */
+    border-radius: 2px;
+    box-shadow: var(--hover-glow-primary); /* Glow under titles */
+}
+
+
+/* ==========================================================================
+   3. Layout (Header, Main, Footer, Sections, Hero Slider)
+   ========================================================================== */
+
+/* Header */
+.main-header {
+    background-color: var(--primary-bg);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 20px rgb(0 0 0 / 50%); /* Stronger shadow for depth */
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows wrap on smaller screens */
+}
+
+.logo img {
+    height: 55px; /* Slightly larger logo */
+    filter: var(--neon-logo-glow); /* Dynamic neon glow based on theme */
+    transition: filter 0.3s ease;
+    border-radius: 50%; /* Make logo round if desired */
+    object-fit: contain; /* Ensure logo fits in circle */
+}
+.logo img:hover {
+    filter: drop-shadow(0 0 15px var(--accent-primary)) drop-shadow(0 0 15px var(--accent-secondary)); /* More intense neon glow on hover */
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin-left: 25px; /* Re-added margin for spacing */
+}
+
+.nav-links a {
+    color: var(--text-color);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px; /* Space for underline */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary)); /* Gradient matches theme */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-primary); /* Nav link hover color */
+    text-shadow: 0 0 8px var(--accent-primary);
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-utility {
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    font-size: 1.6em; /* Slightly larger icons */
+    color: var(--accent-secondary); /* Utility icons get secondary accent */
+    position: relative;
+    z-index: 1010; /* Ensure utility icons are above other elements in header */
+}
+
+.cart-icon, .theme-switcher {
+    cursor: pointer;
+    margin-left: 18px; /* More space */
+    padding: 5px;
+    transition: transform 0.2s ease, color 0.3s ease, text-shadow 0.3s ease;
+    position: relative; /* Needed for cart-count positioning */
+}
+
+.cart-icon:hover, .theme-switcher:hover {
+    transform: scale(1.15);
+    color: var(--accent-primary); /* Icon glow */
+    text-shadow: 0 0 10px var(--accent-primary);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--accent-primary); /* Cart count bubble color */
+    color: var(--primary-bg);
+    border-radius: 50%;
+    padding: 3px 8px; /* Larger padding for better visibility */
+    font-size: 0.7em;
+    font-weight: bold;
+    line-height: 1;
+    border: 2px solid var(--primary-bg); /* Border for pop */
+    z-index: 1011; /* Ensure count is above theme switcher/hamburger */
+    min-width: 24px; /* Ensure circular shape for single digits */
+    min-height: 24px;
+    display: flex; /* Use flex to center number */
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ==========================================================================
+   3. Layout (Hero Section - REVISED as per your design)
+   ========================================================================== */
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 80vh; /* More flexible than fixed vh */
+    max-height: 2000px; /* Prevent it from being too tall on huge screens */
+    height: 90vh; /* Maintain general height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    padding:0px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--primary-bg), var(--hero-gradient-end)); /* Dynamic gradient end */
+}
+
+.hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.7; /* Make it subtle */
+}
+
+/* Hero Slider Container */
+.hero-slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Take full height of hero section */
+    display: flex;
+    flex-direction: column; /* Stack slider and dots */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Important for sliding effect */
+    z-index: 1;
+    padding: 10px 0; /* Add some vertical padding */
+}
+
+.hero-slider {
+    display: flex;
+    width: 100%; /* Initially 100% of container */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Managed by GSAP for smooth slide */
+    will-change: transform;
+    align-items: center; /* Vertically center deal cards */
+}
+
+.deal-card {
+    flex: 0 0 100%; /* Each card takes full width of slider container */
+    height: 1000px; /* Ensure cards fill height for alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in flex basis */
+    min-width: 0; /* Allow shrinking */
+        border-radius:20px;
+    /* Background image setup for full cover */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative; /* For the overlay */
+}
+
+.deal-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%); /* Dark overlay for text visibility */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.deal-content {
+    max-width: 700px;
+    overflow: visible; /* Ensure content is not clipped */
+    text-align:left;
+    padding: 10px;
+    
+}
+
+.deal-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #fff; /* Title text is always white for contrast against background */
+    text-shadow: 0 0 15px var(--accent-primary), 0 0 30px var(--accent-secondary), 0 0 45px var(--accent-tertiary); /* Dynamic glow */
+}
+
+.deal-description {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    color: #E0E0E0; /* Light gray for description, for better readability */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.deal-serving {
+    font-size: 1em;
+    font-weight: 500;
+    color: var(--accent-secondary); /* Use a bright accent for this */
+    margin-bottom: 10px;
+}
+
+.deal-price {
+    font-size: 2.1em;
+    font-weight: bold;
+    color: var(--accent-primary);
+    text-shadow: 0 0 5px var(--accent-primary), 0 0 10px var(--accent-secondary);
+    margin-bottom: 30px;
+}
+
+/* Slider Dots */
+.slider-dots {
+    position: absolute;
+    bottom: 30px; /* Adjusted to be always visible */
+    left: 75%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row; /* Default to horizontal */
+    gap: 10px;
+    z-index: 10;
+    opacity: 1; /* Always visible */
+}
+
+.dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Slightly more prominent border */
+}
+
+.dot.active {
+    background-color: var(--accent-primary);
+    transform: scale(1.2);
+    box-shadow: var(--hover-glow-primary);
+}
+
+/* Shop Status Banner */
+.shop-status-banner {
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1em;
+    position: sticky;
+    top: 75px; /* Below header */
+    z-index: 999;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.shop-status-banner.open {
+    background-color: #28A745; /* Green for open */
+    color: white;
+}
+.shop-status-banner.closed {
+    background-color: #DC3545; /* Red for closed */
+    color: white;
+}
+
+
+/* Menu Section */
+.menu-section {
+    background-color: var(--secondary-bg);
+}
+
+.menu-filters {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Increased gap */
+    flex-wrap: wrap;
+}
+
+.menu-filters button, #menu-search {
+    padding: 12px 25px; /* Larger padding for touch targets */
+    border-radius: 8px;
+    border: 2px solid var(--accent-secondary); /* Neon border */
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none; /* Remove default outline */
+}
+
+.menu-filters button:hover, #menu-search:focus {
+    border-color: var(--accent-primary);
+    box-shadow: var(--hover-glow-primary); /* Glow on hover/focus */
+    transform: translateY(-2px);
+}
+
+#menu-search {
+    flex-grow: 1;
+    max-width: 450px;
+}
+#menu-search::placeholder {
+    color: #888;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted for smaller screens */
+    gap: 30px; /* Increased gap between cards */
+    justify-content: center;
+}
+
+.loading-message, .empty-message, .error-message {
+    font-size: 1.5em;
+    color: #AAA;
+    grid-column: 1 / -1; /* Span across all columns */
+    text-align: center;
+    padding: 50px 0;
+}
+
+
+/* About Us Section */
+.about-section {
+    background-color: var(--primary-bg);
+}
+.about-text {
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    font-size: 1.15em; /* Slightly larger text */
+    line-height: 1.8;
+    color: #CCC; /* Softer text color */
+}
+
+
+/* Contact Us Section (Simple) */
+.contact-us-section {
+    background-color: var(--secondary-bg);
+}
+.contact-text {
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    font-size: 1.1em;
+    color: #CCC;
+}
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+.contact-info a {
+    font-weight: 600;
+}
+
+
+/* Footer */
+.main-footer {
+    background-color: var(--primary-bg);
+    color: #BBB;
+    padding: 30px 0;
+    font-size: 0.9em;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.main-footer a {
+    color: var(--accent-secondary); /* Footer links use secondary accent */
+    font-weight: 500;
+}
+.main-footer a:hover {
+    color: var(--accent-primary); /* Hover changes to primary */
+    text-shadow: none; /* Remove glow from signature to keep it subtle */
+}
+
+
+/* ==========================================================================
+   4. Components (Buttons, Forms, Cards, Modals, Sidebar)
+   ========================================================================== */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 14px 30px; /* More padding */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700; /* Bolder text */
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px var(--box-shadow-dark);
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+}
+
+.btn-primary:hover {
+    box-shadow: var(--hover-glow-primary); /* Primary button glows primary accent */
+    transform: translateY(-5px); /* More pronounced lift */
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+    border: 2px solid var(--accent-secondary); /* Neon border */
+}
+
+.btn-secondary:hover {
+    box-shadow: var(--hover-glow-secondary); /* Secondary button glows secondary accent */
+    transform: translateY(-5px);
+    border-color: var(--accent-primary); /* Border changes color */
+    color: var(--accent-primary);
+}
+
+.btn-clear-cart {
+    background: none;
+    border: 1px solid var(--accent-primary); /* Clear cart button uses primary accent */
+    color: var(--accent-primary);
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+.btn-clear-cart:hover {
+    background-color: var(--accent-primary);
+    color: var(--primary-bg);
+    box-shadow: 0 0 10px rgb(231 76 60 / 40%);
+    transform: translateY(-2px);
+}
+
+
+/* Forms */
+.order-form {
+    background-color: var(--primary-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px var(--box-shadow-dark);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.order-form h3 {
+    font-size: 2em;
+    margin-bottom: 25px;
+    color: var(--accent-primary); /* Form titles glow primary accent */
+    text-shadow: 0 0 10px rgb(231 76 60 / 50%);
+}
+
+.order-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.order-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--accent-secondary); /* Form labels glow secondary accent */
+    font-size: 1.05em;
+}
+
+.order-form input[type="text"],
+.order-form input[type="tel"],
+.order-form textarea,
+.order-form select {
+    width: 100%;
+    padding: 14px; /* Larger input fields */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* More rounded */
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 20%); /* Inner shadow for depth */
+}
+
+.order-form input[type="text"]::placeholder,
+.order-form input[type="tel"]::placeholder,
+.order-form textarea::placeholder {
+    color: #888;
+}
+
+.order-form input[type="text"]:focus,
+.order-form input[type="tel"]:focus,
+.order-form textarea:focus,
+.order-form select:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 12px rgb(231 76 60 / 50%); /* Stronger glow on focus */
+}
+
+.order-form textarea {
+    resize: vertical;
+    min-height: 100px; /* Taller textarea */
+}
+
+.place-order-btn {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 400px; /* Wider button */
+}
+
+/* Checkbox (Remember Me) */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 32px; /* Adjust padding for larger checkbox */
+    margin-top: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #BBB;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 22px; /* Larger checkbox */
+    width: 22px;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #555;
+    border-color: var(--accent-secondary);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 8px; /* Adjust checkmark position */
+    top: 4px;
+    width: 6px;
+    height: 12px;
+    border: solid var(--primary-bg);
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Location Hint */
+.location-hint {
+    font-size: 0.85em;
+    color: #AAA;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
+
+/* Product Cards */
+.product-card {
+    background-color: var(--primary-bg); /* Use primary for cards */
+    border-radius: 15px; /* More rounded */
+    overflow: hidden;
+    box-shadow: 0 10px 30px var(--box-shadow-dark); /* Deeper shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure cards are same height in a grid */
+    border: 1px solid var(--border-color); /* Subtle border */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* More pronounced lift */
+    box-shadow: var(--hover-glow-secondary); /* Cards glow secondary accent */
+}
+
+.product-image {
+    width: 100%;
+    height: 220px; /* Slightly taller for better visuals */
+    object-fit: cover;
+    display: block;
+    border-bottom: 2px solid var(--accent-secondary); /* Neon border under image */
+}
+
+.product-card h3 {
+    font-size: 1.6em;
+    margin: 18px 20px 10px; /* More padding */
+    color: var(--accent-primary); /* Product name glows primary accent */
+    text-shadow: 0 0 5px rgb(231 76 60 / 30%);
+}
+
+.product-card p {
+    font-size: 0.9em;
+    color: #BBB; /* Softer description text */
+    margin: 0 20px 15px;
+    flex-grow: 1;
+}
+
+.product-price {
+    font-size: 1.6em; /* Larger price */
+    font-weight: 700;
+    color: var(--accent-secondary);
+    margin: 0 20px 18px;
+    text-shadow: 0 0 5px rgb(243 156 18 / 30%);
+}
+
+.product-card .add-to-cart-btn {
+    width: calc(100% - 40px); /* 100% minus padding */
+    margin: 0 20px 20px; /* More padding */
+    padding: 12px 15px;
+    font-size: 1.05em;
+    text-align: center;
+    border-radius: 8px; /* Match card radius */
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden off-screen */
+    width: 100%;
+    max-width: 380px; /* Fixed width */
+    height: 100%;
+    background-color: var(--secondary-bg);
+    box-shadow: var(--sidebar-shadow);
+    z-index: 1100; /* Above header and main content */
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s ease-out; /* Smooth slide transition */
+    border: 2px solid var(--accent-primary); /* Sidebar border color */
+}
+
+.cart-sidebar.open {
+    right: 0; /* Slide in */
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--accent-primary); /* Sidebar title color */
+}
+
+.close-sidebar-btn {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.close-sidebar-btn:hover {
+    color: var(--accent-primary);
+    transform: rotate(90deg);
+}
+
+.cart-summary-list {
+    flex-grow: 1; /* Allows list to take available height */
+    padding: 20px;
+    overflow-y: auto; /* Scrollable cart items */
+}
+
+.cart-summary-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px dashed #555;
+    font-size: 1.05em;
+    color: var(--text-color);
+}
+.cart-summary-list li:last-child {
+    border-bottom: none;
+}
+.cart-summary-list li span:first-child {
+    font-weight: 500;
+}
+.cart-summary-list li span:last-child {
+    color: var(--accent-secondary); /* Item price in cart uses secondary accent */
+    font-weight: 600;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.sidebar-footer .cart-total {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-secondary); /* Cart total uses secondary accent */
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.sidebar-footer .checkout-btn, .sidebar-footer .btn-clear-cart {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.sidebar-footer .btn-clear-cart {
+    margin-top: 0; /* Override default margin */
+}
+
+
+/* Modal Overlay (for Checkout Form) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200; /* Above sidebar */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    max-height: 85vh; /* Increased max-height for more content */
+    background-color: var(--primary-bg);
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgb(0 0 0 / 80%);
+    width: 90%;
+    max-width: 650px; /* Max width for modal */
+    transform: scale(0.9); /* Initial scale for pop-in animation */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Changed to overflow-y: auto for vertical scrolling */
+}
+
+.modal-overlay.open .modal-content {
+    transform: scale(1); /* Pop-in animation */
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-bg); /* Slightly different header bg */
+    flex-shrink: 0; /* Prevent header from shrinking if content is long */
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 2em;
+    color: var(--accent-secondary); /* Modal header title accent */
+    text-shadow: 0 0 5px rgb(243 156 18 / 50%);
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.close-modal-btn:hover {
+    color: var(--accent-secondary);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+    flex-grow: 1; /* Allows body to take remaining space and scroll */
+}
+
+
+/* ==========================================================================
+   5. Utility & Helper Classes
+   ========================================================================== */
+
+/* GPS Group */
+.gps-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.gps-group label {
+    flex-basis: 100%; /* Label always takes full width */
+}
+.gps-group #gps-coords {
+    flex-grow: 1;
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #BBB; /* Softer color for coordinates */
+    margin-right: 10px;
+    flex-shrink: 1; /* Allow to shrink if button needs space */
+}
+.gps-group #getGpsBtn {
+    flex-shrink: 0;
+    margin-top: 10px; /* Space from label */
+    padding: 10px 20px; /* Adjusted padding */
+    font-size: 0.9em;
+}
+.gps-message {
+    font-size: 0.9em;
+    color: #FFC107; /* Warning yellow */
+    margin-top: 10px;
+    flex-basis: 100%;
+}
+
+
+/* ==========================================================================
+   6. Responsive Design
+   ========================================================================== */
+
+/* Mobile First - Defaults apply to smallest screens */
+
+/* Header Adjustments */
+@media (max-width: 767px) {
+    .main-header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .main-nav {
+        flex-grow: 1; /* Nav takes remaining space */
+        justify-content: flex-end; /* Push utility to right */
+    }
+    .nav-utility {
+        margin-left: 0; /* Remove extra margin */
+        padding-right: 10px; /* Add some padding to prevent overlap with screen edge */
+    }
+    .hamburger-menu {
+        display: flex; /* Show hamburger menu on mobile */
+        margin-left: 20px; /* Space from utility icons */
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        width: 30px;
+        height: 20px;
+        z-index: 100;
+    }
+    .hamburger-menu span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--accent-primary);
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+    /* Hamburger menu toggle states */
+    .hamburger-menu.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .main-nav .nav-links {
+        display: none; /* Hidden on mobile by default */
+        flex-direction: column;
+        position: absolute;
+        top: 75px; /* Adjust based on header height */
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-bg);
+        box-shadow: 0 10px 20px rgb(0 0 0 / 40%);
+        z-index: 999; /* Below main header */
+    }
+    .main-nav .nav-links.open {
+        display: flex; /* Show when open */
+    }
+    .main-nav .nav-links li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .main-nav .nav-links li:last-child {
+        border-bottom: none;
+    }
+    .main-nav .nav-links a {
+        display: block;
+        padding: 15px 20px;
+        font-size: 1.2em;
+        color: var(--text-color);
+        background: none;
+        text-shadow: none;
+    }
+    .main-nav .nav-links a:hover {
+        background-color: var(--secondary-bg);
+        color: var(--accent-primary);
+    }
+    .main-nav .nav-links a::after {
+        display: none; /* Hide underline on mobile menu */
+    }
+}
+
+
+/* Hero Slider Responsive Adjustments */
+@media (max-width: 767px) {
+    .deal-card {
+        padding: 20px;
+    }
+    .deal-image {
+        height: 200px;
+        max-width: 90%;
+    }
+    .deal-title {
+        font-size: 2.2em;
+    }
+    .deal-description {
+        font-size: 1em;
+    }
+    .deal-price {
+        font-size: 2em;
+    }
+    /* Vertical Dots on Mobile */
+    .slider-dots {
+        bottom: auto; /* Reset bottom */
+        top: 50%; /* Center vertically */
+        right: 15px; /* Move to right side */
+        left: auto; /* Reset left */
+        transform: translateY(-50%); /* Center vertically */
+        flex-direction: column; /* Stack vertically */
+        gap: 8px; /* Smaller gap for vertical stack */
+        padding: 10px; /* Padding around dots */
+        background-color: rgb(0 0 0 / 20%); /* Semi-transparent background for clarity */
+        border-radius: 8px;
+    }
+    .dot {
+        width: 14px; /* Smaller dots for mobile vertical */
+        height: 14px;
+    }
+}
+
+
+/* Small Tablets and up */
+@media (min-width: 576px) {
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .deal-title {
+        font-size: 3em;
+    }
+    .deal-description {
+        font-size: 1.2em;
+    }
+    .deal-price {
+        font-size: 2.5em;
+    }
+    .sidebar-header h3 {
+        font-size: 2em;
+    }
+    .modal-header h3 {
+        font-size: 2.2em;
+    }
+    .modal-content {
+        width: 95%; /* Slightly wider modal */
+    }
+    .deal-image {
+        max-width: 70%;
+    }
+}
+
+/* Tablets and up */
+@media (min-width: 768px) {
+    .main-header {
+        padding: 15px 0;
+    }
+
+    .hamburger-menu {
+        display: none; /* Hide hamburger menu on larger screens */
+    }
+
+    .main-nav .nav-links {
+        display: flex; /* Show navigation links as row */
+        position: static;
+        flex-direction: row;
+        background-color: transparent;
+        box-shadow: none;
+        width: auto;
+    }
+
+    .main-nav .nav-links li {
+        border-bottom: none;
+    }
+
+    .main-nav .nav-links a {
+        padding: 10px 15px;
+        font-size: 1em;
+        background: none;
+    }
+
+    .nav-utility {
+        margin-left: 20px;
+        padding-right: 0; /* No extra padding on larger screens */
+    }
+
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px; /* Larger gap */
+    }
+
+    .gps-group #gps-coords {
+        width: auto; /* Allow content to dictate width */
+    }
+    .gps-group #getGpsBtn {
+        margin-top: 0; /* Align button horizontally on larger screens */
+        margin-left: 15px; /* Space from coords */
+    }
+    .deal-image {
+        max-width: 50%; /* Smaller on desktop to make content prominent */
+    }
+    .deal-title {
+        font-size: 2.5em;
+    }
+    .deal-description {
+        font-size: 1.2em;
+    }
+    .deal-price {
+        font-size: 2em;
+    }
+    /* Horizontal Dots on Tablet/Desktop */
+    .slider-dots {
+        bottom: 30px; /* Back to bottom */
+        top: auto; /* Reset top */
+        right: 5%; /* Reset right */
+        left: auto; /* Center horizontally */
+        /* transform: translateX(-50%); */
+        /* Center horizontally */
+        flex-direction: row; /* Stack horizontally */
+        gap: 10px; /* Default gap */
+        padding: 0; /* No background padding */
+        background-color: transparent; /* Transparent background */
+        border-radius: 0;
+    }
+    .dot {
+        width: 18px; /* Larger dots for horizontal */
+        height: 18px;
+    }
+}
+
+/* Desktops and up */
+@media (min-width: 992px) {
+    .section {
+        padding: 100px 0;
+    }
+    .deal-title {
+        font-size: 3.5em; /* Even larger title for desktop deals */
+    }
+    .deal-description {
+        font-size: 1.4em;
+    }
+    .deal-price {
+        font-size: 2.5em;
+    }
+    .product-list {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
+        gap: 40px;
+    }
+    .order-form .form-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .order-form label {
+        flex: 0 0 180px; /* Fixed width for labels */
+        margin-bottom: 0;
+        margin-right: 25px;
+        text-align: right;
+    }
+    .order-form input[type="text"],
+    .order-form input[type="tel"],
+    .order-form textarea,
+    .order-form select {
+        flex: 1; /* Take remaining space */
+    }
+    .checkbox-container {
+        margin-left: 205px; /* Align with input fields */
+    }
+    .deal-image {
+        height: 300px;
+    }
+    .hero-slider-container .deal-card {
+        flex-direction: row; /* Layout side-by-side on large screens */
+        gap: 40px;
+    }
+    .hero-slider-container .deal-card .deal-image {
+        width: 35%; /* Image takes a portion */
+        height: auto;
+    }
+    .hero-slider-container .deal-card .deal-content {
+        text-align: left; /* Text aligns left */
+        width: 65%;
+    }
+}
+
+/* Larger Desktops */
+@media (min-width: 1200px) {
+    .hero-section {
+        /* height: 80vh; */
+        /* Slightly reduced height for very large screens */
+    }
+    .deal-title {
+        font-size:3.5em;
+    }
+    .deal-description {
+        font-size: 1.6em;
+    }
+    .deal-price {
+        font-size: 3em;
+    }
+}
