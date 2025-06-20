@@ -1,0 +1,285 @@
+/* admin-style.css */
+
+:root {
+    --admin-bg: #1F2833;
+    --admin-panel-bg: #2C3E50;
+    --admin-text: #E0E0E0;
+    --admin-primary: #66FCF1; /* Neon Cyan */
+    --admin-secondary: #F3FF00; /* Neon Yellow */
+    --admin-danger: #E74C3C;
+    --admin-border: #45A29E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+}
+
+/* --- Login Screen --- */
+.login-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background-color: var(--admin-panel-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+.login-logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 2px solid var(--admin-primary);
+}
+
+.login-box h2 {
+    color: var(--admin-primary);
+    margin-bottom: 25px;
+}
+
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    font-size: 1.1em;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--admin-primary);
+    color: var(--admin-bg);
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.login-box button:hover {
+    box-shadow: 0 0 15px var(--admin-primary);
+}
+
+.error-message {
+    color: var(--admin-danger);
+    margin-top: 15px;
+    min-height: 1em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Dashboard --- */
+.dashboard {
+    padding: 20px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--admin-border);
+}
+
+.admin-header h1 {
+    color: var(--admin-primary);
+}
+
+.admin-header button, .dashboard-section button {
+    padding: 10px 20px;
+    border: 1px solid var(--admin-primary);
+    background: none;
+    color: var(--admin-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.admin-header button:hover, .dashboard-section button:hover {
+    background-color: var(--admin-primary);
+    color: var(--admin-bg);
+    box-shadow: 0 0 10px var(--admin-primary);
+}
+
+.dashboard-section {
+    background-color: var(--admin-panel-bg);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+.dashboard-section h2 {
+    color: var(--admin-secondary);
+    margin-bottom: 20px;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background-color: var(--admin-bg);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+.stat-card h3 {
+    color: var(--admin-primary);
+    margin-bottom: 10px;
+}
+.stat-card p {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.chart-container {
+    height: 400px;
+    margin-bottom: 20px;
+}
+
+.btn-add-new {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: var(--admin-secondary) !important;
+    color: var(--admin-bg) !important;
+    border-color: var(--admin-secondary) !important;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.btn-add-new:hover {
+    box-shadow: 0 0 15px var(--admin-secondary) !important;
+}
+
+.product-management-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background-color: var(--admin-bg);
+    border-radius: 8px;
+}
+
+.product-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product-item-details {
+    flex-grow: 1;
+}
+.product-item-details h4 {
+    color: var(--admin-text);
+}
+.product-item-details p {
+    color: #ccc;
+    font-size: 0.9em;
+}
+
+.product-item-actions button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    font-size: 0.9em;
+}
+
+.btn-toggle-status.hidden-status {
+    background-color: var(--admin-danger) !important;
+    border-color: var(--admin-danger) !important;
+    color: white !important;
+}
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background-color: var(--admin-panel-bg);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: var(--admin-primary);
+    margin-bottom: 25px;
+}
+
+.modal-content .form-group {
+    margin-bottom: 20px;
+}
+.modal-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+.modal-content input, .modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    font-size: 1em;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.modal-actions .btn-primary {
+    background-color: var(--admin-primary);
+    color: var(--admin-bg);
+    border: none;
+}
+.modal-actions .btn-secondary {
+    background: none;
+    border: 1px solid #ccc;
+    color: #ccc;
+}
