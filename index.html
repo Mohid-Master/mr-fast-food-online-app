@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Food Fast Food Online - Karachi's Best Fast Food</title>
+    <meta name="description" content="Order delicious fast food online from Mr. Food Fast Food in Karachi. Burgers, fries, shakes, and more, delivered fast!">
+    <meta name="keywords" content="fast food Karachi, online food delivery, burgers, fries, shakes, Mr. Food, food delivery Pakistan">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="assets/images/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Mr. Fast Food" />
+    <link rel="manifest" href="assets/images/site.webmanifest" /> 
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    
+    <!-- Three.js CDN (Reliable Global Scope Version) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.150.1/three.min.js"></script>
+</head>
+<body class="dark-red-orange-theme"> <!-- Set a default theme class here -->
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#hero">
+                    <img src="assets/images/mr-food-logo-neon.png" alt="Mr. Food Fast Food Online Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#contact-us" class="nav-link">Contact Us</a></li>
+                </ul>
+                <div class="nav-utility">
+                    <div class="cart-icon" title="View Cart">
+                        🛒 <span class="cart-count">0</span>
+                    </div>
+                    <div class="theme-switcher" title="Switch Theme">
+                        🎨
+                    </div>
+                    <div class="hamburger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section (Deal Card Slider) -->
+        <section id="hero" class="hero-section section">
+            <canvas id="hero-3d-canvas" class="hero-canvas"></canvas> 
+            <div class="hero-slider-container">
+                <div class="hero-slider" id="hero-slider">
+                    <!-- Deal cards will be dynamically loaded here by App.js -->
+                </div>
+                <div class="slider-dots" id="slider-dots">
+                    <!-- Dots will be dynamically added here by App.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Status Message -->
+        <div class="shop-status-banner" id="shop-status-banner">
+            <!-- Dynamically updated by JS -->
+        </div>
+
+        <!-- Menu Section -->
+        <section id="menu" class="menu-section section">
+            <div class="container">
+                <h2 class="section-title">Our Delicious Menu</h2>
+                <div class="menu-filters">
+                    <input type="text" id="menu-search" placeholder="Search for food...">
+                </div>
+                <div class="product-list" id="product-list">
+                    <p class="loading-message">Loading delicious food...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section section">
+            <div class="container">
+                <h2 class="section-title">About Mr. Food Fast Food</h2>
+                <p class="about-text">
+                    Welcome to Mr. Food Fast Food, your go-to spot for mouth-watering fast food in Karachi!
+                    Born from a passion for flavor and speed, we've been serving up fresh, hot, and delicious meals
+                    that keep our customers coming back for more. We believe in quality ingredients, rapid preparation,
+                    and a taste that truly satisfies. From classic burgers to crispy fries, every item on our menu is
+                    crafted with care. Join our family of satisfied foodies and experience fast food redefined!
+                </p>
+            </div>
+        </section>
+
+        <!-- Simple Contact Us Section -->
+        <section id="contact-us" class="contact-us-section section">
+            <div class="container">
+                <h2 class="section-title">Get in Touch!</h2>
+                <p class="contact-text">
+                    Have questions or special requests? Reach out to us directly via WhatsApp or visit our shop!
+                </p>
+                <div class="contact-info">
+                    <p>WhatsApp: <a href="https://wa.me/923001234567" target="_blank">923001234567</a></p>
+                    <p>Address: Our Shop Location, Karachi, Pakistan</p>
+                    <p>Email: info@mrfoodfastfood.com</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar" id="cart-sidebar">
+        <div class="sidebar-header">
+            <h3>Your Cart</h3>
+            <button class="close-sidebar-btn">×</button>
+        </div>
+        <ul id="sidebar-cart-list" class="cart-summary-list">
+            <li class="empty-cart-message">Your cart is empty.</li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="cart-total">Total: <span id="sidebar-cart-total-price">Rs. 0</span></div>
+            <button class="btn btn-primary checkout-btn" id="checkout-btn">Proceed to Checkout</button>
+            <button class="btn btn-clear-cart" id="sidebar-clear-cart-btn">Clear Cart</button>
+        </div>
+    </aside>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Finalize Your Order</h3>
+                <button class="close-modal-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="order-form" class="order-form">
+                    <h3>Your Details</h3>
+                    <div class="form-group">
+                        <label for="userName">Your Name:</label>
+                        <input type="text" id="userName" placeholder="e.g., Ali Khan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number:</label>
+                        <input type="tel" id="userPhone" placeholder="e.g., 03XX-XXXXXXX" required>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="rememberMe"> Remember me
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <h3>Delivery Location in Karachi</h3>
+                    <div class="form-group gps-group">
+                        <label>GPS Location (for Karachi validation):</label>
+                        <span id="gps-coords">Not set</span>
+                        <button type="button" id="getGpsBtn" class="btn btn-secondary">Get & Check My Location</button>
+                        <p class="gps-message" id="gps-status"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="userLocality">Locality/Area:</label>
+                        <input type="text" id="userLocality" placeholder="e.g., Clifton, Gulshan-e-Iqbal" required>
+                        <small class="location-hint">Delivery currently available only in Karachi, Pakistan.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="userAddress">Specific Address / Landmark:</label>
+                        <textarea id="userAddress" rows="3" placeholder="e.g., House #123, Street 5, Near XYZ Pharmacy" required></textarea>
+                    </div>
+
+                    <h3>Delivery Time</h3>
+                    <div class="form-group">
+                        <label for="deliveryTime">Preferred Delivery Time:</label>
+                        <select id="deliveryTime">
+                            <option value="ASAP">As Soon As Possible</option>
+                            <option value="30-45_min">30-45 Mins</option>
+                            <option value="1_hour">1 Hour</option>
+                            <option value="next_available">Next Available Slot</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary place-order-btn">Place Order via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2023 Mr. Food Fast Food Online. All rights reserved.</p>
+            <p>Designed by <a href="https://i-am-mohid.netlify.app/" target="_blank">I.am.Mohid 😎</a></p>
+        </div>
+    </footer>
+
+    <!-- JS Files - Loaded in order, relying on global scope (no type="module") -->
+    <script src="js/data.js"></script> 
+    <script src="js/animations.js"></script> 
+    <script src="js/App.js"></script> 
+</body>
+</html>
