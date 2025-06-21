@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Access global variables from data.js
-    const API_URL = 'https://script.google.com/macros/s/AKfycbzB1Deeqz2V8kXnnFNBbqO_anyLB3afPDGYrNRijBWf50Lu8kZA-KHAH3tnuRj0WFCH/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbyTLY-kth5Q6r2ocRYFFfqGb044PdsYQAbOJ6Mmr5M/dev';
 
     // DOM Elements
     const loginScreen = document.getElementById('login-screen');
