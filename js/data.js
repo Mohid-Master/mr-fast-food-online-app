@@ -3,7 +3,7 @@
 // These variables are intentionally NOT exported. They will become global variables
 // when this script runs, allowing other scripts loaded later to access them directly.
 
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyzdTq0h_prTPVvT1MYMfPabsmw8lrZBBhwoQKkJw7pLrj2a5bZX7rP5udrd1MozVLw/exec';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyVmhEeVEemjYlflXvRndoz_eGJ2eE0t-yCD9GYTbBpp65B-mIjllqhhNacO7rC-0CW1Q/exec';
 const WHATSAPP_PHONE_NUMBER = '923001234567'; // EXAMPLE: Make sure this is a valid Pakistani number
 
 // --- KARACHI BOUNDARY (Simplified Polygon for Geofencing) ---
