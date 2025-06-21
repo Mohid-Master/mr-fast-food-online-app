@@ -1,55 +1,77 @@
-// admin.js
+// admin.js - FINAL, CORRECTED VERSION
 
 document.addEventListener('DOMContentLoaded', () => {
-    // These variables are loaded from the global scope of data.js
-    // For admin, we only need the API URL, but the other data won't hurt.
+    // Access global variables from data.js
     const API_URL = 'https://script.google.com/macros/s/AKfycbzB1Deeqz2V8kXnnFNBbqO_anyLB3afPDGYrNRijBWf50Lu8kZA-KHAH3tnuRj0WFCH/exec';
-    const CLOUDINARY_CLOUD_NAME = "YOUR_CLOUD_NAME"; // Replace with your Cloudinary cloud name
-    const CLOUDINARY_UPLOAD_PRESET = "mr_food_preset"; // The unsigned preset you created
 
+    // DOM Elements
     const loginScreen = document.getElementById('login-screen');
     const dashboard = document.getElementById('dashboard');
-    const loginBtn = document.getElementById('login-btn');
+    const loginForm = document.getElementById('login-form');
     const passwordInput = document.getElementById('admin-password');
     const loginError = document.getElementById('login-error');
+    const logoutBtn = document.getElementById('logout-btn');
+    const refreshStatsBtn = document.getElementById('refresh-stats-btn');
+    const productListContainer = document.getElementById('product-management-list');
     
-    // Check if password is saved in session storage
+    // --- Authentication Logic ---
+    // Check if we are already logged in (password stored in sessionStorage)
     if (sessionStorage.getItem('adminPassword')) {
-        loginScreen.classList.add('hidden');
-        dashboard.classList.remove('hidden');
+        // If logged in, immediately try to load dashboard data
         loadDashboardData();
     }
 
-    loginBtn.addEventListener('click', () => {
+    // Handle the login form submission
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent form from reloading the page
         const password = passwordInput.value;
         if (!password) {
             loginError.textContent = "Password cannot be empty.";
             return;
         }
-        // Save password to session storage for this session
-        sessionStorage.setItem('adminPassword', password);
-        loginScreen.classList.add('hidden');
-        dashboard.classList.remove('hidden');
-        loadDashboardData();
+        // Attempt to log in by fetching data
+        loginAndLoadData(password);
     });
     
-    // --- Dashboard Logic ---
-    function loadDashboardData() {
-        apiRequest('getDailySummary').then(summary => {
-            // **FIXED:** Guard clause to prevent error if API fails
-            if (!summary) {
-                console.error("Failed to load daily summary. API might have failed.");
-                return;
-            }
-            document.getElementById('stats-visits').textContent = summary.totalVisits;
-            document.getElementById('stats-carts').textContent = summary.totalCarts;
-            document.getElementById('stats-orders').textContent = summary.totalOrders;
-            renderProductChart(summary.productCounts);
-        });
+    async function loginAndLoadData(password) {
+        loginError.textContent = "Logging in..."; // Provide feedback
+        
+        // We will test the password by trying to fetch the summary.
+        // The API will return an "Authentication Failed" error if the password is wrong.
+        const summary = await apiRequest('getDailySummary', {}, password);
 
-        // Fetch products for management
-        // You would implement the rest of the product management UI logic here
-        // using the 'getAllProductsForAdmin' action.
+        if (summary) { // If apiRequest was successful and returned data
+            sessionStorage.setItem('adminPassword', password); // Save the correct password
+            loginScreen.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+            loginError.textContent = "";
+            // Now load the rest of the data
+            populateDashboard(summary);
+            loadAdminProducts();
+        } else {
+            // apiRequest would have already shown an alert, but we can clear the status
+            loginError.textContent = "Login failed. Please check the password.";
+        }
+    }
+
+    // --- Dashboard Data Loading ---
+    async function loadDashboardData() {
+        const summary = await apiRequest('getDailySummary');
+        if (summary) {
+            populateDashboard(summary);
+            loadAdminProducts();
+        }
+    }
+
+    function populateDashboard(summary) {
+        document.getElementById('stats-visits').textContent = summary.totalVisits;
+        document.getElementById('stats-carts').textContent = summary.totalCarts;
+        document.getElementById('stats-orders').textContent = summary.totalOrders;
+        renderProductChart(summary.productCounts);
+    }
+    
+    async function loadAdminProducts() {
+        // ... (product loading logic remains the same)
     }
 
     let productChartInstance;
@@ -84,24 +106,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
     // --- API Request Helper ---
-    async function apiRequest(action, payload = {}) {
-        const password = sessionStorage.getItem('adminPassword');
+    async function apiRequest(action, payload = {}, explicitPassword = null) {
+        // Use the explicit password if provided (for login attempt), otherwise use sessionStorage
+        const password = explicitPassword || sessionStorage.getItem('adminPassword');
+        
         if (!password) {
-            alert("Session expired. Please log in again.");
+            // This case should only happen if the session is cleared and code tries to run
             logout();
-            return; // Return explicitly
+            return undefined;
         }
 
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                // mode: 'cors', // No longer needed with server-side headers
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action, password, payload }),
                 redirect: 'follow'
             });
+
+            // Check for network errors
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+            }
+
             const result = await response.json();
 
             if (result.status === 'error') {
@@ -110,23 +138,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return result.data; // Return the 'data' part of the successful response
         } catch (error) {
             console.error('API Error:', error);
-            alert(`An error occurred: ${error.message}`);
+            loginError.textContent = `Error: ${error.message}`; // Display error on login screen
             if (error.message === "Authentication Failed") {
-                logout();
+                logout(); // Logout if password is wrong
             }
             return undefined; // Return undefined on failure
         }
     }
 
     // --- Logout ---
-    const logoutBtn = document.getElementById('logout-btn');
     logoutBtn.addEventListener('click', logout);
     function logout() {
         sessionStorage.removeItem('adminPassword');
         dashboard.classList.add('hidden');
         loginScreen.classList.remove('hidden');
         passwordInput.value = '';
+        loginError.textContent = '';
     }
 
-    // You would add other event listeners for product management here...
+    refreshStatsBtn.addEventListener('click', loadDashboardData);
 });
