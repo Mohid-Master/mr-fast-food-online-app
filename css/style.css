@@ -401,6 +401,7 @@ p {
     /* Background image setup for full cover */
     background-size: cover;
     background-position: center center;
+   z-index:-1;
     background-repeat: no-repeat;
     position: relative; /* For the overlay */
 }
