@@ -1,7 +1,8 @@
 // admin.js - FINAL, CORRECTED VERSION
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = GOOGLE_APPS_SCRIPT_URL; // From data.js
+    // Access global variables from data.js
+    const API_URL = GOOGLE_APPS_SCRIPT_URL;
 
     // DOM Elements
     const loginScreen = document.getElementById('login-screen');
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             loginScreen.classList.add('hidden');
             dashboard.classList.remove('hidden');
             populateDashboard(summary);
-            // loadAdminProducts(); // You can uncomment this when ready
+            // loadAdminProducts();
         }
     }
 
