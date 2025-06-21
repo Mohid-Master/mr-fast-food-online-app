@@ -3,7 +3,7 @@
 // These variables are intentionally NOT exported. They will become global variables
 // when this script runs, allowing other scripts loaded later to access them directly.
 
-const GOOGLE_APPS_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTLY-kth5Q6r2ocRYFFfqGb044PdsYQAbOJ6Mmr5M/dev';
 const WHATSAPP_PHONE_NUMBER = '923001234567'; // EXAMPLE: Make sure this is a valid Pakistani number
 
 // --- KARACHI BOUNDARY (Simplified Polygon for Geofencing) ---
