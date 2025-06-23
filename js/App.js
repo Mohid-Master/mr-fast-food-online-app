@@ -102,7 +102,7 @@ const App = (function() {
             isShopOpen = false;
             const openTimeFormatted = `${SHOP_OPEN_HOUR % 12 || 12}:00 PM`;
             const closeTimeFormatted = `${SHOP_CLOSE_HOUR % 12 || 12}:00 AM`;
-            shopStatusBanner.textContent = `We are currently CLOSED. Open everyday from ${openTimeFormatted} to ${2,00 AM}.`;
+            shopStatusBanner.textContent = `We are currently CLOSED. Open everyday from ${openTimeFormatted} to 2,00 AM.`;
             shopStatusBanner.classList.remove('open');
             shopStatusBanner.classList.add('closed');
             disableOrdering();
