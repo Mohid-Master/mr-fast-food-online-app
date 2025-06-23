@@ -63,8 +63,8 @@ const App = (function() {
     const SLIDER_INTERVAL_TIME = 5000;
 
     // --- Constants ---
-    const SHOP_OPEN_HOUR = 19; // 7 PM
-    const SHOP_CLOSE_HOUR = 24; // 12 AM
+    const SHOP_OPEN_HOUR = 18; // 7 PM
+    const SHOP_CLOSE_HOUR = 26; // 02 AM
 
     // --- Utility Functions ---
     function formatPrice(price) {
@@ -102,7 +102,7 @@ const App = (function() {
             isShopOpen = false;
             const openTimeFormatted = `${SHOP_OPEN_HOUR % 12 || 12}:00 PM`;
             const closeTimeFormatted = `${SHOP_CLOSE_HOUR % 12 || 12}:00 AM`;
-            shopStatusBanner.textContent = `We are currently CLOSED. Open everyday from ${openTimeFormatted} to ${closeTimeFormatted}.`;
+            shopStatusBanner.textContent = `We are currently CLOSED. Open everyday from ${openTimeFormatted} to ${2,00 AM}.`;
             shopStatusBanner.classList.remove('open');
             shopStatusBanner.classList.add('closed');
             disableOrdering();
