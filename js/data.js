@@ -8,17 +8,17 @@ const WHATSAPP_PHONE_NUMBER = '923442384248'; // Updated to a valid-looking Paki
 
 // --- ORANGI TOWN BOUNDARY (Simplified Polygon for Geofencing) ---
 // This is an approximation for Orangi Town, Karachi. Format is [longitude, latitude]
-const KARACHI_BOUNDARY = [
-    [67.015, 24.975], // Northwest corner of Orangi Town (approx)
-    [67.065, 24.975], // Northeast corner
-    [67.065, 24.925], // Southeast corner
-    [67.015, 24.925], // Southwest corner
-    [67.015, 24.975]  // Closing the polygon
-];
 // const KARACHI_BOUNDARY = [
-//     [66.8, 24.8], [66.8, 25.2], [67.0, 25.4], [67.2, 25.3],
-//     [67.4, 25.0], [67.3, 24.7], [67.1, 24.7], [66.8, 24.8]
+//     [67.015, 24.975], // Northwest corner of Orangi Town (approx)
+//     [67.065, 24.975], // Northeast corner
+//     [67.065, 24.925], // Southeast corner
+//     [67.015, 24.925], // Southwest corner
+//     [67.015, 24.975]  // Closing the polygon
 // ];
+const KARACHI_BOUNDARY = [
+    [66.8, 24.8], [66.8, 25.2], [67.0, 25.4], [67.2, 25.3],
+    [67.4, 25.0], [67.3, 24.7], [67.1, 24.7], [66.8, 24.8]
+];
 
 // --- DEMO PRODUCT DATA (Updated from your image menu with specific images) ---
 const demoProducts = [
